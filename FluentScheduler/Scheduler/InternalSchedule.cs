@@ -173,6 +173,10 @@ internal class InternalSchedule
         // raising JobEnded event
         JobEnded?.Invoke(this, new JobEndedEventArgs(exception, startTime, endTime, NextRun));
 
+        // if this schedule was stopped while the job was running
+        if (token.IsCancellationRequested)
+            return;
+
         // recursive call
         // note that the NextRun was already calculated in this run
         _task = Run(token);
