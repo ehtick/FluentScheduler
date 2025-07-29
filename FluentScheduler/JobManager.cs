@@ -261,7 +261,7 @@ public static class JobManager
     private static void AddJob(Action<Schedule> jobSchedule, Schedule schedule)
     {
         jobSchedule(schedule);
-        CalculateNextRun(new Schedule[] { schedule }).ToList().ForEach(RunJob);
+        CalculateNextRun([schedule]).ToList().ForEach(RunJob);
         ScheduleJobs();
     }
 
