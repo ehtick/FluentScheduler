@@ -24,13 +24,7 @@ public static class JobManager
 
     private static readonly ISet<Tuple<Schedule, Task>> _running = new HashSet<Tuple<Schedule, Task>>();
 
-    internal static DateTime Now
-    {
-        get
-        {
-            return _useUtc ? DateTime.UtcNow : DateTime.Now;
-        }
-    }
+    internal static DateTime Now => _useUtc ? DateTime.UtcNow : DateTime.Now;
 
     #endregion
 
@@ -230,14 +224,7 @@ public static class JobManager
     /// <summary>
     /// Collection of all schedules.
     /// </summary>
-    public static IEnumerable<Schedule> AllSchedules
-    {
-        get
-        {
-            // returning a shallow copy
-            return _schedules.All().ToList();
-        }
-    }
+    public static IEnumerable<Schedule> AllSchedules => _schedules.All().ToList(); // returning a shallow copy
 
     #endregion
 
