@@ -22,7 +22,7 @@ internal static class Program
     {
         var outputTemplate = "[{Timestamp:HH:mm:ss}] {Message}{NewLine}";
 
-        Log.Logger = new LoggerConfiguration()
+        Logger = new LoggerConfiguration()
             .MinimumLevel.Debug()
             .WriteTo.Console(outputTemplate: outputTemplate)
             .WriteTo.File("logs/.txt", outputTemplate: outputTemplate, rollingInterval: Day)
