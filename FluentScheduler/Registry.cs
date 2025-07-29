@@ -89,7 +89,7 @@ public class Registry
             Schedules.Add(schedule);
         }
 
-        schedule.Name = name; 
+        schedule.Name = name;
 
         return schedule;
     }
