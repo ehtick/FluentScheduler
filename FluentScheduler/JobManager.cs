@@ -50,7 +50,7 @@ public static class JobManager
     /// </summary>
     public static IJobFactory JobFactory
     {
-        private get => _jobFactory = _jobFactory ?? new JobFactory();
+        private get => _jobFactory ??= new JobFactory();
         set => _jobFactory = value;
     }
 

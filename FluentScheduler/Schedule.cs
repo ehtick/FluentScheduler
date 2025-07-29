@@ -179,7 +179,7 @@ public class Schedule
     /// </summary>
     public Schedule NonReentrant()
     {
-        Reentrant = Reentrant ?? new object();
+        Reentrant ??= new object();
         return this;
     }
 
