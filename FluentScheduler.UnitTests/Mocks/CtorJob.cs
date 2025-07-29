@@ -1,6 +1,6 @@
 ﻿namespace FluentScheduler.UnitTests.Mocks;
 
-public class CtorJob : IJob
+internal class CtorJob : IJob
 {
     public CtorJob() => ++Calls;
 

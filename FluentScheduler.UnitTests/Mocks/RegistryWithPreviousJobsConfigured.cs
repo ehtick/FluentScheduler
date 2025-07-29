@@ -2,7 +2,7 @@
 
 using System;
 
-public class RegistryWithPreviousJobsConfigured : Registry
+internal class RegistryWithPreviousJobsConfigured : Registry
 {
     public RegistryWithPreviousJobsConfigured()
     {

@@ -1,8 +1,8 @@
-﻿namespace FluentScheduler.UnitTests.Mocks;
+namespace FluentScheduler.UnitTests.Mocks;
 
 using System.Threading.Tasks;
 
-public class AsyncJob : IAsyncJob
+internal class AsyncJob : IAsyncJob
 {
     public static int Calls { get; private set; }
 

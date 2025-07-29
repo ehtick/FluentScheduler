@@ -2,7 +2,7 @@
 
 using static Serilog.Log;
 
-public class ParameterJob : IJob
+internal class ParameterJob : IJob
 {
     public string Parameter { get; set; }
 

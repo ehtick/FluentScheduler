@@ -3,7 +3,7 @@
 using System;
 using static Serilog.Log;
 
-public class DisposableJob : IJob, IDisposable
+internal class DisposableJob : IJob, IDisposable
 {
     public void Execute() => Logger.Information("Disposable: executing");
 

@@ -2,7 +2,7 @@
 
 using System;
 
-public class StronglyTypedTestJob : IJob
+internal class StronglyTypedTestJob : IJob
 {
     public void Execute() => Console.WriteLine("Hi");
 }

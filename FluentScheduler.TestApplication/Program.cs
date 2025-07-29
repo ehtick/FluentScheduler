@@ -6,7 +6,7 @@ using System.Threading;
 using static Serilog.Log;
 using static Serilog.RollingInterval;
 
-public static class Program
+internal static class Program
 {
     static void Main(string[] args)
     {

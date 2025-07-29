@@ -2,7 +2,7 @@
 
 using System;
 
-public class DisposableJob : IJob, IDisposable
+internal class DisposableJob : IJob, IDisposable
 {
     public DisposableJob() => Disposed = false;
 

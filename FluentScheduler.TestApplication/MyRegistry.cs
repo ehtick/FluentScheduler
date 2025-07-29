@@ -4,7 +4,7 @@ using System;
 using static Serilog.Log;
 using static System.Threading.Thread;
 
-public class MyRegistry : Registry
+internal class MyRegistry : Registry
 {
     public MyRegistry()
     {
