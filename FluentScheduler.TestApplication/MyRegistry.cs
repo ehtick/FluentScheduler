@@ -71,7 +71,7 @@ internal class MyRegistry : Registry
         Schedule(() =>
         {
             Logger.Information("Faulty: throwing an exception");
-            throw new Exception("Exception from Faulty job");
+            throw new InvalidOperationException("Exception from Faulty job");
         }).WithName("Faulty").ToRunNow().AndEvery(20).Minutes();
     }
 
