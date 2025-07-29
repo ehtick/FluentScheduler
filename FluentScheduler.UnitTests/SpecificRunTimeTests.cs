@@ -15,7 +15,7 @@ namespace FluentScheduler.UnitTests
             schedule.ToRunNow().AndEvery(1).Months();
 
             // Assert
-            Equal(1, schedule.AdditionalSchedules.Count);
+            Single(schedule.AdditionalSchedules);
         }
 
         [Fact]
