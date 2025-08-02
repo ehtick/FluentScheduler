@@ -264,7 +264,7 @@ public class ScheduleTests
         schedule.Start();
 
         // Assert
-        Throws<InvalidOperationException>(() => schedule.UseUtc());
+        Throws<InvalidOperationException>(schedule.UseUtc);
     }
 
 
