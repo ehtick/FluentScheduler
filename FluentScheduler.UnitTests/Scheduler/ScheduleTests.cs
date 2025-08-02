@@ -312,7 +312,7 @@ public class ScheduleTests
         // Arrange
         var cancelled = false;
         var schedule = new Schedule(async (token) =>
-            await Task.Delay(1000, token).ContinueWith(_ => cancelled = token.IsCancellationRequested),
+            await Task.Delay(1000, token).ContinueWith(_ => cancelled = token.IsCancellationRequested).ConfigureAwait(false),
             run => run.Now()
         );
 
