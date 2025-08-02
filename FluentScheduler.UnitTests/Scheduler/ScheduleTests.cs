@@ -52,9 +52,14 @@ namespace FluentScheduler.UnitTests
             // Arrange
             var calls = 0;
 
-            #pragma warning disable 1998
-            var schedule = new Schedule(async () => ++calls, run => run.Now().AndEvery(1).Seconds());
-            #pragma warning restore 1998
+            var schedule = new Schedule(
+                async () =>
+                {
+                    ++calls;
+                    await Task.Yield();
+                },
+                run => run.Now().AndEvery(1).Seconds()
+            );
 
             // Act
             schedule.Start();
@@ -76,9 +81,8 @@ namespace FluentScheduler.UnitTests
         {
             // Arrange
             var now = DateTime.Now.AddMinutes(1);
-            #pragma warning disable 1998
-            var schedule = new Schedule(async () => { }, "* * * * *");
-            #pragma warning restore 1998
+
+            var schedule = new Schedule(async () => await Task.Yield(), "* * * * *");
 
             // Act
             schedule.Start();
