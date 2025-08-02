@@ -65,7 +65,7 @@ public static class Program
     }
 
     static Schedule Faulty() => new Schedule(
-        () => { throw new Exception("Exception from Faulty job"); },
+        () => { throw new InvalidOperationException("Exception from faulty job"); },
         run => run.Now().AndEvery(20).Minutes()
     );
 

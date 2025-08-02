@@ -209,7 +209,7 @@ public class ScheduleTests
     public async Task Exception()
     {
         // Arrange
-        var schedule = new Schedule(() => throw new Exception("Some exception."), run => run.Now());
+        var schedule = new Schedule(() => throw new InvalidOperationException("Some exception."), run => run.Now());
 
         Exception exception = null;
         schedule.JobEnded += (sender, e) => exception = e.Exception;
