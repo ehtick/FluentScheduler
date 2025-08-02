@@ -1,17 +1,16 @@
-namespace FluentScheduler
+namespace FluentScheduler;
+
+using System;
+
+/// <summary>
+/// Information about a job start.
+/// </summary>
+public class JobStartedEventArgs : EventArgs
 {
-    using System;
+    internal JobStartedEventArgs(DateTime startTime) => StartTime = startTime;
 
     /// <summary>
-    /// Information about a job start.
+    /// Date and time of the job start.
     /// </summary>
-    public class JobStartedEventArgs : EventArgs
-    {
-        internal JobStartedEventArgs(DateTime startTime) => StartTime = startTime;
-
-        /// <summary>
-        /// Date and time of the job start.
-        /// </summary>
-        public DateTime StartTime { get; }
-    }
+    public DateTime StartTime { get; }
 }

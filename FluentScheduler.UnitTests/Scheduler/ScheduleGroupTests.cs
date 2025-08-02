@@ -1,305 +1,304 @@
-namespace FluentScheduler.UnitTests
+namespace FluentScheduler.UnitTests;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xunit;
+using static Xunit.Assert;
+
+public class ScheduleGroupTests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Xunit;
-    using static Xunit.Assert;
-
-    public class ScheduleGroupTests
+    [Fact]
+    public void Start()
     {
-        [Fact]
-        public void Start()
+         // Arrange
+        var scheduleCollection = new List<Schedule>
         {
-             // Arrange
-            var scheduleCollection = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            };
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+        };
 
-            // Act
-            scheduleCollection.Start();
+        // Act
+        scheduleCollection.Start();
 
-            // Assert
-            True(scheduleCollection.AllRunning());
-        }
+        // Assert
+        True(scheduleCollection.AllRunning());
+    }
 
-         [Fact]
-        public async Task AllRunning()
+     [Fact]
+    public async Task AllRunning()
+    {
+        // Arrange
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            };
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+        };
 
-            // Act
-            scheduleGroup.Start();
-            await Task.Delay(100);
+        // Act
+        scheduleGroup.Start();
+        await Task.Delay(100);
 
-            // Assert
-            True(scheduleGroup.AllRunning());
+        // Assert
+        True(scheduleGroup.AllRunning());
 
-            // Act
-            scheduleGroup.Stop();
+        // Act
+        scheduleGroup.Stop();
 
-            // Assert
-            False(scheduleGroup.AllRunning());
-        }
+        // Assert
+        False(scheduleGroup.AllRunning());
+    }
 
-        [Fact]
-        public void AnyRunning()
+    [Fact]
+    public void AnyRunning()
+    {
+        // Arrange
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now()),
-            };
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now()),
+        };
 
-            // Act
-            scheduleGroup.Start();
+        // Act
+        scheduleGroup.Start();
 
-            // Assert
-            True(scheduleGroup.AnyRunning());
-        }
+        // Assert
+        True(scheduleGroup.AnyRunning());
+    }
 
-        [Fact]
-        public void AllStopped()
+    [Fact]
+    public void AllStopped()
+    {
+        // Arrange
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            };
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+        };
 
-            // Act
-            scheduleGroup.Start();
-            
-            // Assert
-            False(scheduleGroup.AllStopped());
+        // Act
+        scheduleGroup.Start();
+        
+        // Assert
+        False(scheduleGroup.AllStopped());
 
-            // Act
-            scheduleGroup.StopAndBlock();
+        // Act
+        scheduleGroup.StopAndBlock();
 
-            // Assert
-            True(scheduleGroup.AllStopped());
-        }
+        // Assert
+        True(scheduleGroup.AllStopped());
+    }
 
-        [Fact]
-        public void AnyStopped()
+    [Fact]
+    public void AnyStopped()
+    {
+        // Arrange
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            };
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+        };
 
-            // Act
-            scheduleGroup.Start();
+        // Act
+        scheduleGroup.Start();
 
-            // Assert
-            False(scheduleGroup.AnyStopped());
+        // Assert
+        False(scheduleGroup.AnyStopped());
 
-            // Act
-            scheduleGroup[0].StopAndBlock();
+        // Act
+        scheduleGroup[0].StopAndBlock();
 
-            // Assert
-            True(scheduleGroup.AnyStopped());
-        }
-       
-        [Fact]
-        public void SetScheduling()
+        // Assert
+        True(scheduleGroup.AnyStopped());
+    }
+   
+    [Fact]
+    public void SetScheduling()
+    {
+        // Arrange
+        var now = DateTime.Now;
+
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var now = DateTime.Now;
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+        };
 
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            };
+        // Act
+        scheduleGroup.SetScheduling(newRun => newRun.Every(3).Minutes());
+        scheduleGroup.Start();
 
-            // Act
-            scheduleGroup.SetScheduling(newRun => newRun.Every(3).Minutes());
-            scheduleGroup.Start();
+        scheduleGroup.StopAndBlock();
 
-            scheduleGroup.StopAndBlock();
+        // Assert
+        Equal(now.AddMinutes(3).Minute, scheduleGroup[0].NextRun.Value.Minute);
+    }
 
-            // Assert
-            Equal(now.AddMinutes(3).Minute, scheduleGroup[0].NextRun.Value.Minute);
-        }
+    [Fact]
+    public async Task ResetScheduling()
+    {
+        // Arrange
+        var now = DateTime.Now;
 
-        [Fact]
-        public async Task ResetScheduling()
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var now = DateTime.Now;
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Months()),
+            new Schedule(() => { } , run => run.Now().AndEvery(1).Months())
+        };
 
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Months()),
-                new Schedule(() => { } , run => run.Now().AndEvery(1).Months())
-            };
+        // Act
+        
+        var stopped = scheduleGroup.AllStopped();
 
-            // Act
-            
-            var stopped = scheduleGroup.AllStopped();
+        await Task.Delay(100);
 
-            await Task.Delay(100);
+        scheduleGroup.Stop();
+        scheduleGroup.ResetScheduling();
 
-            scheduleGroup.Stop();
-            scheduleGroup.ResetScheduling();
+        scheduleGroup.Start();
+        var nextRun = scheduleGroup.NextRun();
 
-            scheduleGroup.Start();
-            var nextRun = scheduleGroup.NextRun();
+        // Assert
+        Equal(now.Day, nextRun.Value.Item2.Day);
+    }
 
-            // Assert
-            Equal(now.Day, nextRun.Value.Item2.Day);
-        }
+    [Fact]
+    public async Task ListenJobStarted()
+    {
+        // Arrange
+        var calls = 0;
+        var expectedCalls = 2;
 
-        [Fact]
-        public async Task ListenJobStarted()
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var calls = 0;
-            var expectedCalls = 2;
+            new Schedule(() => { } , run => run.Now()),
+            new Schedule(() => { } , run => run.Now()),
+        };
 
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now()),
-                new Schedule(() => { } , run => run.Now()),
-            };
+        // Act
+        scheduleGroup.ListenJobStarted((_, e) => calls++);
 
-            // Act
-            scheduleGroup.ListenJobStarted((_, e) => calls++);
+        scheduleGroup.Start();
+        await Task.Delay(100);
+        scheduleGroup.StopAndBlock();
 
-            scheduleGroup.Start();
-            await Task.Delay(100);
-            scheduleGroup.StopAndBlock();
+        // Assert
+        Equal(expectedCalls, calls);
+    }
 
-            // Assert
-            Equal(expectedCalls, calls);
-        }
+    [Fact]
+    public async Task UnlistenJobStarted()
+    {
+        // Arrange
+        var calls = 0;
+        var expectedCalls = 2;
 
-        [Fact]
-        public async Task UnlistenJobStarted()
+        EventHandler<JobStartedEventArgs> jobStartedEvent = (_, e) => calls++; 
+
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var calls = 0;
-            var expectedCalls = 2;
+            new Schedule(() => { } , run => run.Now()),
+            new Schedule(() => { } , run => run.Now()),
+        };
 
-            EventHandler<JobStartedEventArgs> jobStartedEvent = (_, e) => calls++; 
+        // Act
+        scheduleGroup.ListenJobStarted(jobStartedEvent);
 
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now()),
-                new Schedule(() => { } , run => run.Now()),
-            };
+        scheduleGroup.Start();
+        await Task.Delay(100);
+        scheduleGroup.StopAndBlock();
 
-            // Act
-            scheduleGroup.ListenJobStarted(jobStartedEvent);
+        scheduleGroup.ResetScheduling();
+        scheduleGroup.UnlistenJobStarted(jobStartedEvent);
 
-            scheduleGroup.Start();
-            await Task.Delay(100);
-            scheduleGroup.StopAndBlock();
+        scheduleGroup.Start();
+        await Task.Delay(100);
+        scheduleGroup.StopAndBlock();
 
-            scheduleGroup.ResetScheduling();
-            scheduleGroup.UnlistenJobStarted(jobStartedEvent);
+        // Assert
+        Equal(expectedCalls, calls);
+    }
 
-            scheduleGroup.Start();
-            await Task.Delay(100);
-            scheduleGroup.StopAndBlock();
+    [Fact]
+    public async Task ListenJobEnded()
+    {
+        // Arrange
+        var calls = 0;
+        var expectedCalls = 2;
 
-            // Assert
-            Equal(expectedCalls, calls);
-        }
-
-        [Fact]
-        public async Task ListenJobEnded()
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var calls = 0;
-            var expectedCalls = 2;
+            new Schedule(() => { } , run => run.Now()),
+            new Schedule(() => { } , run => run.Now()),
+        };
 
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now()),
-                new Schedule(() => { } , run => run.Now()),
-            };
+        // Act
+        scheduleGroup.ListenJobEnded((_, e) => calls++);
 
-            // Act
-            scheduleGroup.ListenJobEnded((_, e) => calls++);
+        scheduleGroup.Start();
+        await Task.Delay(100);
+        scheduleGroup.StopAndBlock();
 
-            scheduleGroup.Start();
-            await Task.Delay(100);
-            scheduleGroup.StopAndBlock();
+        // Assert
+        Equal(expectedCalls, calls);
+    }
 
-            // Assert
-            Equal(expectedCalls, calls);
-        }
+    [Fact]
+    public async Task UnlistenJobEnded()
+    {
+        // Arrange
+        var calls = 0;
+        var expectedCalls = 2;
 
-        [Fact]
-        public async Task UnlistenJobEnded()
+        EventHandler<JobEndedEventArgs> jobEndedEvent = (_, e) => calls++; 
+
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var calls = 0;
-            var expectedCalls = 2;
+            new Schedule(() => { } , run => run.Now()),
+            new Schedule(() => { } , run => run.Now()),
+        };
 
-            EventHandler<JobEndedEventArgs> jobEndedEvent = (_, e) => calls++; 
+        // Act
+        scheduleGroup.ListenJobEnded(jobEndedEvent);
 
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Now()),
-                new Schedule(() => { } , run => run.Now()),
-            };
+        scheduleGroup.Start();
+        await Task.Delay(100);
+        scheduleGroup.StopAndBlock();
 
-            // Act
-            scheduleGroup.ListenJobEnded(jobEndedEvent);
+        scheduleGroup.ResetScheduling();
+        scheduleGroup.UnlistenJobEnded(jobEndedEvent);
 
-            scheduleGroup.Start();
-            await Task.Delay(100);
-            scheduleGroup.StopAndBlock();
+        scheduleGroup.Start();
+        await Task.Delay(100);
+        scheduleGroup.StopAndBlock();
 
-            scheduleGroup.ResetScheduling();
-            scheduleGroup.UnlistenJobEnded(jobEndedEvent);
+        // Assert
+        Equal(expectedCalls, calls);
+    }
 
-            scheduleGroup.Start();
-            await Task.Delay(100);
-            scheduleGroup.StopAndBlock();
-
-            // Assert
-            Equal(expectedCalls, calls);
-        }
-
-        [Fact]
-        public async Task NextRun()
+    [Fact]
+    public async Task NextRun()
+    {
+        // Arrange
+        var scheduleGroup = new List<Schedule>
         {
-            // Arrange
-            var scheduleGroup = new List<Schedule>
-            {
-                new Schedule(() => { } , run => run.Every(10).Minutes()),
-                new Schedule(() => { } , run => run.Every(20).Minutes()),
-            };
+            new Schedule(() => { } , run => run.Every(10).Minutes()),
+            new Schedule(() => { } , run => run.Every(20).Minutes()),
+        };
 
-            // Act
-            scheduleGroup.Start();
-            var expectedNextRun = DateTime.Now;
+        // Act
+        scheduleGroup.Start();
+        var expectedNextRun = DateTime.Now;
 
-            await Task.Delay(100);
+        await Task.Delay(100);
 
-            var nextRun = scheduleGroup.NextRun();
+        var nextRun = scheduleGroup.NextRun();
 
-            // Assert
-            Equal(expectedNextRun.AddMinutes(10).Minute, nextRun.Value.Item2.Minute);
-        }
+        // Assert
+        Equal(expectedNextRun.AddMinutes(10).Minute, nextRun.Value.Item2.Minute);
     }
 }

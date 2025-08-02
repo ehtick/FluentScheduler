@@ -1,13 +1,12 @@
-namespace FluentScheduler
+namespace FluentScheduler;
+
+using System;
+
+internal interface ITimeCalculator
 {
-	using System;
+	Func<DateTime> Now { get; set; }
 
-	internal interface ITimeCalculator
-	{
-		Func<DateTime> Now { get; set; }
+	void Reset();
 
-		void Reset();
-
-		DateTime? Calculate(DateTime last);
-	}
+	DateTime? Calculate(DateTime last);
 }

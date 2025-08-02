@@ -1,32 +1,31 @@
-namespace FluentScheduler
+namespace FluentScheduler;
+
+using NCrontab;
+using System;
+
+internal class CronTimeCalculator : ITimeCalculator
 {
-    using NCrontab;
-    using System;
+    private CrontabSchedule _calculator;
 
-    internal class CronTimeCalculator : ITimeCalculator
+    public void UseUtc() => ((ITimeCalculator)this).Now = () => DateTime.UtcNow;
+
+    Func<DateTime> ITimeCalculator.Now { get; set; } = () => DateTime.Now;
+
+    internal CronTimeCalculator(string cronExpression)
     {
-        private CrontabSchedule _calculator;
+       if (cronExpression == null) 
+            throw new ArgumentNullException(nameof(cronExpression));
 
-        public void UseUtc() => ((ITimeCalculator)this).Now = () => DateTime.UtcNow;
-
-        Func<DateTime> ITimeCalculator.Now { get; set; } = () => DateTime.Now;
-
-        internal CronTimeCalculator(string cronExpression)
+        var cronFields = cronExpression.Split(StringSeparatorStock.Space, StringSplitOptions.RemoveEmptyEntries).Length;
+        var parseOptions = new CrontabSchedule.ParseOptions 
         {
-           if (cronExpression == null) 
-                throw new ArgumentNullException(nameof(cronExpression));
+            IncludingSeconds = cronFields == 6
+        };
 
-            var cronFields = cronExpression.Split(StringSeparatorStock.Space, StringSplitOptions.RemoveEmptyEntries).Length;
-            var parseOptions = new CrontabSchedule.ParseOptions 
-            {
-                IncludingSeconds = cronFields == 6
-            };
-
-            _calculator = CrontabSchedule.Parse(cronExpression, parseOptions);
-        }
-
-        DateTime? ITimeCalculator.Calculate(DateTime last) => _calculator.GetNextOccurrence(last);
-
-        void ITimeCalculator.Reset() { }
+        _calculator = CrontabSchedule.Parse(cronExpression, parseOptions);
     }
+
+    DateTime? ITimeCalculator.Calculate(DateTime last) => _calculator.GetNextOccurrence(last);
+
+    void ITimeCalculator.Reset() { }
 }
