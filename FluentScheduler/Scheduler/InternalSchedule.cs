@@ -17,8 +17,9 @@ internal class InternalSchedule
 
     internal InternalSchedule(Func<CancellationToken, Task> job, ITimeCalculator calculator)
     {
-        _job = job ?? throw new ArgumentNullException(nameof(job));
+        ArgumentNullException.ThrowIfNull(job);
 
+        _job = job;
         SetScheduling(calculator);
     }
 

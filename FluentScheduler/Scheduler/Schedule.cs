@@ -134,8 +134,7 @@ public class Schedule
     {
         lock (Internal.RunningLock)
         {
-            if (specifier == null)
-                throw new ArgumentNullException(nameof(specifier));
+            ArgumentNullException.ThrowIfNull(specifier);
 
             Internal.SetScheduling(new FluentTimeCalculator(specifier));
         }
@@ -150,8 +149,7 @@ public class Schedule
     {
         lock (Internal.RunningLock)
         {
-            if (cron == null)
-                throw new ArgumentNullException(nameof(cron));
+            ArgumentNullException.ThrowIfNull(cron);
 
             Internal.SetScheduling(new CronTimeCalculator(cron));
         }
