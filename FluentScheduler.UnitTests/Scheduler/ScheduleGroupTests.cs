@@ -14,8 +14,8 @@ public class ScheduleGroupTests
         // Arrange
         var scheduleCollection = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
         };
 
         // Act
@@ -31,9 +31,9 @@ public class ScheduleGroupTests
         // Arrange
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
         };
 
         // Act
@@ -56,9 +56,9 @@ public class ScheduleGroupTests
         // Arrange
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now()),
         };
 
         // Act
@@ -74,9 +74,9 @@ public class ScheduleGroupTests
         // Arrange
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
         };
 
         // Act
@@ -98,9 +98,9 @@ public class ScheduleGroupTests
         // Arrange
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
         };
 
         // Act
@@ -124,8 +124,8 @@ public class ScheduleGroupTests
 
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
+            new(() => { } , run => run.Now().AndEvery(1).Seconds()),
         };
 
         // Act
@@ -146,8 +146,8 @@ public class ScheduleGroupTests
 
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Months()),
-            new Schedule(() => { } , run => run.Now().AndEvery(1).Months())
+            new(() => { } , run => run.Now().AndEvery(1).Months()),
+            new(() => { } , run => run.Now().AndEvery(1).Months())
         };
 
         // Act
@@ -174,8 +174,8 @@ public class ScheduleGroupTests
 
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now()),
-            new Schedule(() => { } , run => run.Now()),
+            new(() => { } , run => run.Now()),
+            new(() => { } , run => run.Now()),
         };
 
         // Act
@@ -200,8 +200,8 @@ public class ScheduleGroupTests
 
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now()),
-            new Schedule(() => { } , run => run.Now()),
+            new(() => { } , run => run.Now()),
+            new(() => { } , run => run.Now()),
         };
 
         // Act
@@ -231,8 +231,8 @@ public class ScheduleGroupTests
 
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now()),
-            new Schedule(() => { } , run => run.Now()),
+            new(() => { } , run => run.Now()),
+            new(() => { } , run => run.Now()),
         };
 
         // Act
@@ -261,8 +261,8 @@ public class ScheduleGroupTests
 
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Now()),
-            new Schedule(() => { } , run => run.Now()),
+            new(() => { } , run => run.Now()),
+            new(() => { } , run => run.Now()),
         };
 
         // Act
@@ -289,8 +289,8 @@ public class ScheduleGroupTests
         // Arrange
         var scheduleGroup = new List<Schedule>
         {
-            new Schedule(() => { } , run => run.Every(10).Minutes()),
-            new Schedule(() => { } , run => run.Every(20).Minutes()),
+            new(() => { } , run => run.Every(10).Minutes()),
+            new(() => { } , run => run.Every(20).Minutes()),
         };
 
         // Act
