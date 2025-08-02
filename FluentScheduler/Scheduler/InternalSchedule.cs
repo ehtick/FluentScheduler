@@ -2,6 +2,7 @@ namespace FluentScheduler;
 
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -98,6 +99,8 @@ internal class InternalSchedule
 
     private void CalculateNextRun(DateTime last) => NextRun = Calculator.Calculate(last);
 
+    [SuppressMessage("Design", "CA1031", Justification = "It's OK to catch a general exception here because it comes " +
+        "from user code and not from the library itself.")]
     private async Task Run(CancellationToken token)
     {
         // checking if it's supposed to run
