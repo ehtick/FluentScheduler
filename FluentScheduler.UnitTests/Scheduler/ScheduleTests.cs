@@ -1,8 +1,7 @@
 namespace FluentScheduler.UnitTests;
 
-using System.Threading.Tasks;
-using System.Threading;
 using System;
+using System.Threading.Tasks;
 using Xunit;
 using static Xunit.Assert;
 
