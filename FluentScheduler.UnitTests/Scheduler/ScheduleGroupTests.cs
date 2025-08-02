@@ -1,8 +1,8 @@
 namespace FluentScheduler.UnitTests
 {
-    using System.Collections.Generic;
-    using System.Threading;
     using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Xunit;
     using static Xunit.Assert;
 
@@ -26,7 +26,7 @@ namespace FluentScheduler.UnitTests
         }
 
          [Fact]
-        public void AllRunning()
+        public async Task AllRunning()
         {
             // Arrange
             var scheduleGroup = new List<Schedule>
@@ -38,7 +38,7 @@ namespace FluentScheduler.UnitTests
 
             // Act
             scheduleGroup.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             True(scheduleGroup.AllRunning());
@@ -139,7 +139,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void ResetScheduling()
+        public async Task ResetScheduling()
         {
             // Arrange
             var now = DateTime.Now;
@@ -154,7 +154,7 @@ namespace FluentScheduler.UnitTests
             
             var stopped = scheduleGroup.AllStopped();
 
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             scheduleGroup.Stop();
             scheduleGroup.ResetScheduling();
@@ -167,7 +167,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void ListenJobStarted()
+        public async Task ListenJobStarted()
         {
             // Arrange
             var calls = 0;
@@ -183,7 +183,7 @@ namespace FluentScheduler.UnitTests
             scheduleGroup.ListenJobStarted((_, e) => calls++);
 
             scheduleGroup.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
             scheduleGroup.StopAndBlock();
 
             // Assert
@@ -191,7 +191,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void UnlistenJobStarted()
+        public async Task UnlistenJobStarted()
         {
             // Arrange
             var calls = 0;
@@ -209,14 +209,14 @@ namespace FluentScheduler.UnitTests
             scheduleGroup.ListenJobStarted(jobStartedEvent);
 
             scheduleGroup.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
             scheduleGroup.StopAndBlock();
 
             scheduleGroup.ResetScheduling();
             scheduleGroup.UnlistenJobStarted(jobStartedEvent);
 
             scheduleGroup.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
             scheduleGroup.StopAndBlock();
 
             // Assert
@@ -224,7 +224,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void ListenJobEnded()
+        public async Task ListenJobEnded()
         {
             // Arrange
             var calls = 0;
@@ -240,7 +240,7 @@ namespace FluentScheduler.UnitTests
             scheduleGroup.ListenJobEnded((_, e) => calls++);
 
             scheduleGroup.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
             scheduleGroup.StopAndBlock();
 
             // Assert
@@ -248,7 +248,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void UnlistenJobEnded()
+        public async Task UnlistenJobEnded()
         {
             // Arrange
             var calls = 0;
@@ -266,14 +266,14 @@ namespace FluentScheduler.UnitTests
             scheduleGroup.ListenJobEnded(jobEndedEvent);
 
             scheduleGroup.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
             scheduleGroup.StopAndBlock();
 
             scheduleGroup.ResetScheduling();
             scheduleGroup.UnlistenJobEnded(jobEndedEvent);
 
             scheduleGroup.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
             scheduleGroup.StopAndBlock();
 
             // Assert
@@ -281,7 +281,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void NextRun()
+        public async Task NextRun()
         {
             // Arrange
             var scheduleGroup = new List<Schedule>
@@ -294,7 +294,7 @@ namespace FluentScheduler.UnitTests
             scheduleGroup.Start();
             var expectedNextRun = DateTime.Now;
 
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             var nextRun = scheduleGroup.NextRun();
 

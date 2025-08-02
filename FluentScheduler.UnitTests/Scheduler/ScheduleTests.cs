@@ -9,7 +9,7 @@ namespace FluentScheduler.UnitTests
     public class ScheduleTests
     {
         [Fact]
-        public void Start()
+        public async Task Start()
         {
             // Arrange
             var calls = 0;
@@ -17,21 +17,21 @@ namespace FluentScheduler.UnitTests
 
             // Act
             schedule.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             Equal(1, calls);
             True(schedule.Running);
 
             // Act
-            Thread.Sleep(1000);
+            await Task.Delay(1000);
 
             // Assert
             Equal(2, calls);
         }
 
         [Fact]
-        public void StartCron()
+        public async Task StartCron()
         {
             // Arrange
             var now = DateTime.Now.AddMinutes(1);
@@ -39,7 +39,7 @@ namespace FluentScheduler.UnitTests
 
             // Act
             schedule.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             Equal(now.Hour, schedule.NextRun.Value.Hour);
@@ -47,7 +47,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void StartAsync()
+        public async Task StartAsync()
         {
             // Arrange
             var calls = 0;
@@ -63,21 +63,21 @@ namespace FluentScheduler.UnitTests
 
             // Act
             schedule.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             Equal(1, calls);
             True(schedule.Running);
 
             // Act
-            Thread.Sleep(1000);
+            await Task.Delay(1000);
 
             // Assert
             Equal(2, calls);
         }
 
         [Fact]
-        public void StartCronASync()
+        public async Task StartCronASync()
         {
             // Arrange
             var now = DateTime.Now.AddMinutes(1);
@@ -86,7 +86,7 @@ namespace FluentScheduler.UnitTests
 
             // Act
             schedule.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             Equal(now.Hour, schedule.NextRun.Value.Hour);
@@ -94,7 +94,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void Stop()
+        public async Task Stop()
         {
             // Arrange
             var schedule = new Schedule(() => { }, run => run.Now().AndEvery(1).Seconds());
@@ -102,7 +102,7 @@ namespace FluentScheduler.UnitTests
             // Act
             schedule.Start();
 
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             schedule.Stop();
 
@@ -111,7 +111,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void StopAndBlock()
+        public async Task StopAndBlock()
         {
             // Arrange
             var calls = 0;
@@ -119,7 +119,7 @@ namespace FluentScheduler.UnitTests
 
             // Act
             schedule.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             Equal(1, calls);
@@ -134,7 +134,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void SetScheduling()
+        public async Task SetScheduling()
         {
             // Arrange
             var calls = 0;
@@ -144,20 +144,20 @@ namespace FluentScheduler.UnitTests
             // Act
             schedule.Start();
 
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             schedule.StopAndBlock();
             schedule.SetScheduling(run => run.Now());
             schedule.Start();
 
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             Equal(expectedCalls, calls);
         }
 
         [Fact]
-        public void ResetScheduling()
+        public async Task ResetScheduling()
         {
             // Arrange
             var calls = 0;
@@ -167,20 +167,20 @@ namespace FluentScheduler.UnitTests
             // Act
             schedule.Start();
 
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             schedule.StopAndBlock();
             schedule.ResetScheduling();
             schedule.Start();
 
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             Equal(expectedCalls, calls);
         }
 
         [Fact]
-        public void Events()
+        public async Task Events()
         {
             // Arrange
             var startedCalls = 0;
@@ -192,14 +192,14 @@ namespace FluentScheduler.UnitTests
 
             // Act
             schedule.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             Equal(1, startedCalls);
             Equal(1, endedCalls);
 
             // Act
-            Thread.Sleep(1000);
+            await Task.Delay(1000);
 
             // Assert
             Equal(2, startedCalls);
@@ -207,7 +207,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void Exception()
+        public async Task Exception()
         {
             // Arrange
             var schedule = new Schedule(() => throw new Exception("Some exception."), run => run.Now());
@@ -217,7 +217,7 @@ namespace FluentScheduler.UnitTests
 
             // Act
             schedule.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
 
             // Assert
             Equal("Some exception.", exception.Message);
@@ -308,7 +308,7 @@ namespace FluentScheduler.UnitTests
         }
 
         [Fact]
-        public void WaitForCancellation()
+        public async Task WaitForCancellation()
         {
             // Arrange
             var cancelled = false;
@@ -319,7 +319,7 @@ namespace FluentScheduler.UnitTests
 
             // Act
             schedule.Start();
-            Thread.Sleep(100);
+            await Task.Delay(100);
             schedule.StopAndBlock();
 
             // Assert
