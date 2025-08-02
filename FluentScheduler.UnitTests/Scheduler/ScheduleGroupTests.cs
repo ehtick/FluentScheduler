@@ -11,7 +11,7 @@ public class ScheduleGroupTests
     [Fact]
     public void Start()
     {
-         // Arrange
+        // Arrange
         var scheduleCollection = new List<Schedule>
         {
             new Schedule(() => { } , run => run.Now().AndEvery(1).Seconds()),
@@ -25,7 +25,7 @@ public class ScheduleGroupTests
         True(scheduleCollection.AllRunning());
     }
 
-     [Fact]
+    [Fact]
     public async Task AllRunning()
     {
         // Arrange
@@ -81,7 +81,7 @@ public class ScheduleGroupTests
 
         // Act
         scheduleGroup.Start();
-        
+
         // Assert
         False(scheduleGroup.AllStopped());
 
@@ -115,7 +115,7 @@ public class ScheduleGroupTests
         // Assert
         True(scheduleGroup.AnyStopped());
     }
-   
+
     [Fact]
     public void SetScheduling()
     {
@@ -151,7 +151,6 @@ public class ScheduleGroupTests
         };
 
         // Act
-        
         var stopped = scheduleGroup.AllStopped();
 
         await Task.Delay(100);
@@ -197,7 +196,7 @@ public class ScheduleGroupTests
         var calls = 0;
         var expectedCalls = 2;
 
-        EventHandler<JobStartedEventArgs> jobStartedEvent = (_, e) => calls++; 
+        EventHandler<JobStartedEventArgs> jobStartedEvent = (_, e) => ++calls;
 
         var scheduleGroup = new List<Schedule>
         {
@@ -254,7 +253,11 @@ public class ScheduleGroupTests
         var calls = 0;
         var expectedCalls = 2;
 
+<<<<<<< HEAD
         EventHandler<JobEndedEventArgs> jobEndedEvent = (_, e) => calls++; 
+=======
+        EventHandler<JobEndedEventArgs> jobEndedEvent = (_, e) => ++calls;
+>>>>>>> a4b6058 (IDE0055)
 
         var scheduleGroup = new List<Schedule>
         {

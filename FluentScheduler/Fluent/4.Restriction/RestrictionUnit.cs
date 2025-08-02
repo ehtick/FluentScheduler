@@ -54,7 +54,7 @@ public class RestrictionUnit
         if (allDays.All(day => exceptionalDays.Contains(day)))
             throw new ArgumentException($"\"{nameof(exceptionalDays)}\" cannot contain all days of week.");
 
-        _calculator.PeriodCalculations.Add(last => 
+        _calculator.PeriodCalculations.Add(last =>
         {
             while (exceptionalDays.Contains(last.DayOfWeek))
                 last = last.AddDays(1);

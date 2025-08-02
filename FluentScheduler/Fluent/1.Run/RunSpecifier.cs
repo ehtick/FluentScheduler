@@ -29,7 +29,8 @@ public class RunSpecifier
     /// <param name="day">Day to run the job</param>
     public RestrictionUnit Every(DayOfWeek day)
     {
-        _calculator.PeriodCalculations.Add(last => {
+        _calculator.PeriodCalculations.Add(last =>
+        {
             var daysToNext = day - last.DayOfWeek;
 
             if (day <= last.DayOfWeek)
@@ -51,7 +52,7 @@ public class RunSpecifier
     {
         var timeOfDay = new TimeSpan(time.Hours, time.Minutes, time.Seconds);
 
-         if (timeOfDay < TimeSpan.Zero)
+        if (timeOfDay < TimeSpan.Zero)
             throw new ArgumentOutOfRangeException($"\"{nameof(time)}\" should be positive.");
 
         _calculator.PeriodCalculations.Add(last => last.Add(timeOfDay));

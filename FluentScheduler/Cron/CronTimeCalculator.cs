@@ -17,7 +17,7 @@ internal class CronTimeCalculator : ITimeCalculator
             throw new ArgumentNullException(nameof(cronExpression));
 
         var cronFields = cronExpression.Split(StringSeparatorStock.Space, StringSplitOptions.RemoveEmptyEntries).Length;
-        var parseOptions = new CrontabSchedule.ParseOptions 
+        var parseOptions = new CrontabSchedule.ParseOptions
         {
             IncludingSeconds = cronFields == 6
         };

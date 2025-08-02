@@ -108,7 +108,7 @@ internal class InternalSchedule
         var delay = NextRun.Value - Calculator.Now();
 
         // delaying until it's time to run or a cancellation was requested
-        await Task.Delay(delay < TimeSpan.Zero ? TimeSpan.Zero : delay, token).ContinueWith(_ => {});
+        await Task.Delay(delay < TimeSpan.Zero ? TimeSpan.Zero : delay, token).ContinueWith(_ => { });
 
         // checking if a cancellation was requested
         if (token.IsCancellationRequested)

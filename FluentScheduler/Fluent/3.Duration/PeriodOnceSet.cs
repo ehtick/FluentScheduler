@@ -31,16 +31,16 @@ public class PeriodOnceSet
     /// Runs the job at the given time of day.
     /// </summary>
     /// <param name="timeCollection">Time of day.</param>
-    public void At(params TimeSpan[] timeCollection) 
+    public void At(params TimeSpan[] timeCollection)
     {
         foreach (var time in timeCollection)
         {
             if (time >= ((ITimeCalculator)_calculator).Now().TimeOfDay)
             {
-                _calculator.PeriodCalculations.Add(last => 
+                _calculator.PeriodCalculations.Add(last =>
                     new DateTime(last.Year, last.Month, last.Day, time.Hours, time.Minutes, 0)
                 );
-                
+
                 break;
             }
         }
@@ -71,7 +71,7 @@ public class PeriodOnceSet
                 var next = new DateTime(last.Year, last.Month, last.Day).Add(from);
 
                 if (from >= to || lastTime < from)
-                    return  next;
+                    return next;
 
                 if (lastTime > to)
                     return next.AddDays(1);

@@ -5,7 +5,7 @@ using System;
 /// <summary>
 /// The "once" run has been set.
 /// </summary>
-public class OnceSet                                    
+public class OnceSet
 {
     private readonly FluentTimeCalculator _calculator;
 
@@ -29,7 +29,7 @@ public class OnceSet
     /// <param name="day">Day to run the job</param>
     public RestrictionUnit AndEvery(DayOfWeek day)
     {
-        _calculator.PeriodCalculations.Add(last => 
+        _calculator.PeriodCalculations.Add(last =>
         {
             if (last.DayOfWeek != day)
                 last = last.AddDays(7 - (int)last.DayOfWeek);
