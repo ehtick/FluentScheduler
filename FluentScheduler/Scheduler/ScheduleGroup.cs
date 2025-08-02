@@ -197,7 +197,7 @@ public static class ScheduleGroup
 
         try
         {
-            return internals.Select(toRun).ToList();
+            return [.. internals.Select(toRun)];
         }
         finally
         {
