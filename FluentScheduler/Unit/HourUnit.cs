@@ -20,7 +20,7 @@ public sealed class HourUnit : ITimeRestrictableUnit
 
     internal Schedule Schedule { get; private set; }
 
-    Schedule ITimeRestrictableUnit.Schedule { get { return this.Schedule; } }
+    Schedule ITimeRestrictableUnit.Schedule => Schedule;
 
     /// <summary>
     /// Runs the job at the given minute of the hour.

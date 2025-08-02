@@ -16,5 +16,5 @@ public sealed class MillisecondUnit : ITimeRestrictableUnit
 
     internal Schedule Schedule { get; private set; }
 
-    Schedule ITimeRestrictableUnit.Schedule { get { return this.Schedule; } }
+    Schedule ITimeRestrictableUnit.Schedule => Schedule;
 }

@@ -22,7 +22,7 @@ public sealed class DayUnit : IDayRestrictableUnit
 
     internal Schedule Schedule { get; private set; }
 
-    Schedule IDayRestrictableUnit.Schedule { get { return this.Schedule; } }
+    Schedule IDayRestrictableUnit.Schedule => Schedule;
 
     /// <summary>
     /// Runs the job at the given time of day.

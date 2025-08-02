@@ -21,7 +21,7 @@ public sealed class MonthOnDayOfMonthUnit : IDayRestrictableUnit
 
     internal Schedule Schedule { get; private set; }
 
-    Schedule IDayRestrictableUnit.Schedule { get { return this.Schedule; } }
+    Schedule IDayRestrictableUnit.Schedule => Schedule;
 
     DateTime IDayRestrictableUnit.DayIncrement(DateTime increment)
     {
