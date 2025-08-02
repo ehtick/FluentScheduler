@@ -78,7 +78,7 @@ public class Schedule
     /// <summary>
     /// Date and time of the next job run.
     /// </summary>
-    public DateTime? NextRun { get => Internal.NextRun; }
+    public DateTime? NextRun => Internal.NextRun;
 
     /// <summary>
     /// Event raised when the job starts.
