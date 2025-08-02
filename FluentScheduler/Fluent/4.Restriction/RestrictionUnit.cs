@@ -1,7 +1,6 @@
 namespace FluentScheduler;
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
@@ -49,7 +48,7 @@ public class RestrictionUnit
     /// <param name="exceptionalDays">Days to exclude.</param>
     public PeriodOnceSet Except(params DayOfWeek[] exceptionalDays)
     {
-        var allDays = (IEnumerable<DayOfWeek>)Enum.GetValues(typeof(DayOfWeek));
+        var allDays = Enum.GetValues<DayOfWeek>();
 
         if (allDays.All(day => exceptionalDays.Contains(day)))
             throw new ArgumentException(
