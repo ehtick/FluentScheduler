@@ -4,12 +4,14 @@
     </a>
 </p>
 
+
+
 <p align="center">
-    <a href="https://ci.appveyor.com/project/TallesL/fluentscheduler">
-        <img alt="logo" src="https://ci.appveyor.com/api/projects/status/github/fluentscheduler/fluentscheduler?svg=true">
+    <a href="https://github.com/fluentscheduler/FluentScheduler/actions/workflows/build.yml">
+        <img alt="badge" src="https://img.shields.io/github/actions/workflow/status/fluentscheduler/fluentscheduler/build.yml?logo=github&branch=version-6">
     </a>
     <a href="https://www.nuget.org/packages/FluentScheduler">
-        <img alt="logo" src="https://badge.fury.io/nu/fluentscheduler.svg">
+        <img alt="badge" src="https://img.shields.io/nuget/dt/FluentScheduler.svg?logo=nuget">
     </a>
 </p>
 
