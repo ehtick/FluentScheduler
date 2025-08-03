@@ -125,7 +125,7 @@ public class RunSpecifierTests
         Equal(expected, calculated);
 
         // Arrange
-        expected =  new DateTime(2020, 9, 15);
+        expected = new DateTime(2020, 9, 15);
 
         // Act
         calculated = calculator.Calculate((DateTime)calculated);
@@ -153,7 +153,7 @@ public class RunSpecifierTests
         Equal(expected, calculated);
 
         // Arrange
-        expected =  new DateTime(2020, 9, 10);
+        expected = new DateTime(2020, 9, 10);
 
         // Act
         calculated = calculator.Calculate((DateTime)calculated);
@@ -181,7 +181,7 @@ public class RunSpecifierTests
         Equal(expected, calculated);
 
         // Arrange
-        expected =  new DateTime(2020, 9, 11);
+        expected = new DateTime(2020, 9, 11);
 
         // Act
         calculated = calculator.Calculate((DateTime)calculated);
@@ -209,7 +209,7 @@ public class RunSpecifierTests
         Equal(expected, calculated);
 
         // Arrange
-        expected =  new DateTime(2020, 9, 12);
+        expected = new DateTime(2020, 9, 12);
 
         // Act
         calculated = calculator.Calculate((DateTime)calculated);
