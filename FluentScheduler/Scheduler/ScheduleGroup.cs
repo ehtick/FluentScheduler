@@ -205,8 +205,8 @@ public static class ScheduleGroup
         }
     }
 
-    private static IEnumerable<InternalSchedule> Internal(IEnumerable<Schedule> schedules) =>
-        schedules.Select(s => s.Internal);
+    private static InternalSchedule[] Internal(IEnumerable<Schedule> schedules) =>
+        [.. schedules.Select(s => s.Internal)];
 
     private static void EnterLock(IEnumerable<InternalSchedule> internals)
     {
