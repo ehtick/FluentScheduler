@@ -138,7 +138,7 @@ public class ScheduleTests
         // Arrange
         var calls = 0;
         var expectedCalls = 2;
-        var schedule = new Schedule(() => calls++, run => run.Now().AndEvery(1).Days());
+        var schedule = new Schedule(() => ++calls, run => run.Now().AndEvery(1).Days());
 
         // Act
         schedule.Start();
@@ -161,7 +161,7 @@ public class ScheduleTests
         // Arrange
         var calls = 0;
         var expectedCalls = 2;
-        var schedule = new Schedule(() => calls++, run => run.Now());
+        var schedule = new Schedule(() => ++calls, run => run.Now());
 
         // Act
         schedule.Start();

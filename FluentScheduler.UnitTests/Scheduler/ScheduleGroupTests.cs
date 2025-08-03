@@ -179,7 +179,7 @@ public class ScheduleGroupTests
         };
 
         // Act
-        scheduleGroup.ListenJobStarted((_, e) => calls++);
+        scheduleGroup.ListenJobStarted((_, e) => ++calls);
 
         scheduleGroup.Start();
         await Task.Delay(100);
@@ -236,7 +236,7 @@ public class ScheduleGroupTests
         };
 
         // Act
-        scheduleGroup.ListenJobEnded((_, e) => calls++);
+        scheduleGroup.ListenJobEnded((_, e) => ++calls);
 
         scheduleGroup.Start();
         await Task.Delay(100);
@@ -253,11 +253,7 @@ public class ScheduleGroupTests
         var calls = 0;
         var expectedCalls = 2;
 
-<<<<<<< HEAD
-        EventHandler<JobEndedEventArgs> jobEndedEvent = (_, e) => calls++; 
-=======
         EventHandler<JobEndedEventArgs> jobEndedEvent = (_, e) => ++calls;
->>>>>>> a4b6058 (IDE0055)
 
         var scheduleGroup = new List<Schedule>
         {
