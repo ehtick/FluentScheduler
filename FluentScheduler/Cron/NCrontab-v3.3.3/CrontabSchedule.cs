@@ -180,11 +180,11 @@ namespace FluentScheduler.NCrontab
 
         public IEnumerable<DateTime> GetNextOccurrences(DateTime baseTime, DateTime endTime)
         {
-            for (var occurrence = GetNextOccurrence(baseTime, endTime);
-                 occurrence < endTime;
-                 occurrence = GetNextOccurrence(occurrence, endTime))
+            for (var occurrence = TryGetNextOccurrence(baseTime, endTime);
+                 occurrence != null && occurrence < endTime;
+                 occurrence = TryGetNextOccurrence(occurrence.Value, endTime))
             {
-                yield return occurrence;
+                yield return occurrence.Value;
             }
         }
 
@@ -209,8 +209,10 @@ namespace FluentScheduler.NCrontab
         // <paramref name="baseTime"/>. Also, <param name="endTime" /> is
         // exclusive.
         // </remarks>
-
         public DateTime GetNextOccurrence(DateTime baseTime, DateTime endTime)
+            => TryGetNextOccurrence(baseTime, endTime) ?? endTime;
+
+        DateTime? TryGetNextOccurrence(DateTime baseTime, DateTime endTime)
         {
             const int nil = -1;
 
@@ -253,8 +255,13 @@ namespace FluentScheduler.NCrontab
 
             if (minute == nil)
             {
+                second = seconds.GetFirst();
                 minute = _minutes.GetFirst();
                 hour++;
+            }
+            else if (minute > baseMinute)
+            {
+                second = seconds.GetFirst();
             }
 
             //
@@ -271,6 +278,7 @@ namespace FluentScheduler.NCrontab
             }
             else if (hour > baseHour)
             {
+                second = seconds.GetFirst();
                 minute = _minutes.GetFirst();
             }
 
@@ -321,6 +329,14 @@ namespace FluentScheduler.NCrontab
             }
 
             //
+            // Stop processing when year is too large for the datetime or calendar
+            // object. Otherwise we would get an exception.
+            //
+
+            if (year > Calendar.MaxSupportedDateTime.Year)
+                return null;
+
+            //
             // The day field in a cron expression spans the entire range of days
             // in a month, which is from 1 to 31. However, the number of days in
             // a month tend to be variable depending on the month (and the year
@@ -360,7 +376,7 @@ namespace FluentScheduler.NCrontab
             if (_daysOfWeek.Contains((int) nextTime.DayOfWeek))
                 return nextTime;
 
-            return GetNextOccurrence(new DateTime(year, month, day, 23, 59, 59, 0, baseTime.Kind), endTime);
+            return TryGetNextOccurrence(new DateTime(year, month, day, 23, 59, 59, 0, baseTime.Kind), endTime);
         }
 
         // <summary>

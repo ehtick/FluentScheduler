@@ -18,35 +18,13 @@
 //
 #endregion
 
-#if SERIALIZATION
-
 namespace FluentScheduler.NCrontab
 {
     using System;
-    using System.Runtime.Serialization;
 
-    [Serializable]
-    internal partial class CrontabException
-    {
-        protected CrontabException(SerializationInfo info, StreamingContext context) :
-            base(info, context) {}
-    }
+    // <summary>
+    // Represents the method that will generate an <see cref="Exception"/> object.
+    // </summary>
 
-    [Serializable]
-    internal partial class CrontabField {}
-
-    [Serializable]
-    internal partial class CrontabSchedule
-    {
-        [Serializable]
-        partial class ParseOptions {}
-    }
-
-    [Serializable]
-    internal partial class CrontabFieldImpl : IObjectReference
-    {
-        object IObjectReference.GetRealObject(StreamingContext context) => FromKind(Kind);
-    }
+    internal delegate Exception ExceptionProvider();
 }
-
-#endif
