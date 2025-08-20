@@ -16,7 +16,7 @@ public class OnceSetTests
         var sunday = new DateTime(2018, 2, 25);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new OnceSet(fluentCalculator);
 
         // Act
@@ -50,7 +50,7 @@ public class OnceSetTests
         var expected = date.AddSeconds(10);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new OnceSet(fluentCalculator);
 
         // Act
@@ -69,7 +69,7 @@ public class OnceSetTests
         var expected = new DateTime(2018, 12, 24);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new OnceSet(fluentCalculator);
 
         // Act
@@ -88,7 +88,7 @@ public class OnceSetTests
         var expected = new DateTime(2018, 12, 29);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new OnceSet(fluentCalculator);
 
         // Act

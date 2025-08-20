@@ -16,7 +16,7 @@ public class DayUnitTests
         var monday = new DateTime(2018, 02, 19);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new DayUnit(fluentCalculator);
 
         // Act
@@ -51,7 +51,7 @@ public class DayUnitTests
         var expected = new DateTime(2018, 02, 17);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new DayUnit(fluentCalculator);
 
         // Act

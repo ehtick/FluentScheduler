@@ -14,7 +14,7 @@ internal class InternalSchedule
     private readonly Func<CancellationToken, Task> _job;
 
     // the calculator for the next run, internal access to allow unit test mocking
-    internal INextRunCalculator _calculator;
+    internal ITimeCalculator _calculator;
 
     // the task when a job is running, or null when not running
     private Task _task;
@@ -23,7 +23,7 @@ internal class InternalSchedule
     private CancellationTokenSource _tokenSource;
 
     // similar ctor to the public schedule class, the only different being taking an already instantiated calculator
-    internal InternalSchedule(Func<CancellationToken, Task> job, INextRunCalculator calculator)
+    internal InternalSchedule(Func<CancellationToken, Task> job, ITimeCalculator calculator)
     {
         _job = job;
         SetScheduling(calculator);
@@ -49,7 +49,7 @@ internal class InternalSchedule
     }
 
     // changes the scheduling of this schedule
-    internal void SetScheduling(INextRunCalculator calculator)
+    internal void SetScheduling(ITimeCalculator calculator)
     {
         NextRun = null;
         _calculator = calculator;

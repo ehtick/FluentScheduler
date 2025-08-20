@@ -14,7 +14,7 @@ public class MonthUnitTests
         var expected = new DateTime(2020, 9, 2);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var monthUnit = new MonthUnit(fluentCalculator);
 
         // Act

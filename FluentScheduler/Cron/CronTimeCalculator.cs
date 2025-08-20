@@ -3,13 +3,13 @@ namespace FluentScheduler;
 using NCrontab;
 using System;
 
-internal class CronTimeCalculator : INextRunCalculator
+internal class CronTimeCalculator : ITimeCalculator
 {
     private readonly CrontabSchedule _calculator;
 
-    public void UseUtc() => ((INextRunCalculator)this).Now = () => DateTime.UtcNow;
+    public void UseUtc() => ((ITimeCalculator)this).Now = () => DateTime.UtcNow;
 
-    Func<DateTime> INextRunCalculator.Now { get; set; } = () => DateTime.Now;
+    Func<DateTime> ITimeCalculator.Now { get; set; } = () => DateTime.Now;
 
     internal CronTimeCalculator(string cronExpression)
     {
@@ -22,7 +22,7 @@ internal class CronTimeCalculator : INextRunCalculator
         _calculator = CrontabSchedule.Parse(cronExpression, parseOptions);
     }
 
-    DateTime? INextRunCalculator.Calculate(DateTime last) => _calculator.GetNextOccurrence(last);
+    DateTime? ITimeCalculator.Calculate(DateTime last) => _calculator.GetNextOccurrence(last);
 
-    void INextRunCalculator.Reset() { }
+    void ITimeCalculator.Reset() { }
 }

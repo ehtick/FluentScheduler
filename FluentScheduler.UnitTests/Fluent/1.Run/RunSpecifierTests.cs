@@ -13,7 +13,7 @@ public class RunSpecifierTests
         var now = DateTime.Now;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -38,7 +38,7 @@ public class RunSpecifierTests
         var time = new TimeSpan(1, 3, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -57,7 +57,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 6);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -85,7 +85,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 7);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -114,7 +114,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 8);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -142,7 +142,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 3);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -170,7 +170,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 4);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -198,7 +198,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 5);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -226,7 +226,7 @@ public class RunSpecifierTests
         var at = new DateTime(2000, 10, 10, 10, 10, 10);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -250,7 +250,7 @@ public class RunSpecifierTests
         var now = DateTime.Now;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -276,7 +276,7 @@ public class RunSpecifierTests
         var minutes = 50;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -301,7 +301,7 @@ public class RunSpecifierTests
         var at = new TimeSpan(13, 50, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -326,7 +326,7 @@ public class RunSpecifierTests
         var at = new DateTime(2000, 10, 10, 10, 10, 10);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -350,7 +350,7 @@ public class RunSpecifierTests
         var now = DateTime.Today;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -375,7 +375,7 @@ public class RunSpecifierTests
         var time = TimeSpan.FromSeconds(10);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -400,7 +400,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 2);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -425,7 +425,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 5);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -464,7 +464,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 2, 15, 0, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -493,7 +493,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 2, 15, 0, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -522,7 +522,7 @@ public class RunSpecifierTests
         var expected = new DateTime(2020, 9, 2, 15, 0, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act

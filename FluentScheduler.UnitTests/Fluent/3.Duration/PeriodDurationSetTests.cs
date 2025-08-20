@@ -13,7 +13,7 @@ public class PeriodDurationSetTests
         var now = DateTime.Now;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -31,7 +31,7 @@ public class PeriodDurationSetTests
         var now = DateTime.Now;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -49,7 +49,7 @@ public class PeriodDurationSetTests
         var now = DateTime.Now;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -67,7 +67,7 @@ public class PeriodDurationSetTests
         var now = DateTime.Now;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -85,7 +85,7 @@ public class PeriodDurationSetTests
         var now = DateTime.Now;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act
@@ -103,7 +103,7 @@ public class PeriodDurationSetTests
         var now = DateTime.Now;
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         // Act

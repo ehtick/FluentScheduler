@@ -1,4 +1,4 @@
-﻿namespace FluentScheduler.TestApplication;
+namespace FluentScheduler.TestApplication;
 
 using Serilog;
 using System;
@@ -12,24 +12,7 @@ internal static class Program
         InitializeLogger();
 
         var schedules = new[] {
-            Welcome(),
-
-            NonReentrant(),
-            Faulty(),
-
             FiveMinutes(),
-            TenMinutes(),
-            Hour(),
-            Day(),
-            Weekday(),
-            Week(),
-
-            Sunday(),
-            Monday(),
-            Tuesday(),
-            Thursday(),
-            Friday(),
-            Saturday(),
         };
 
         schedules.ListenJobStarted(JobStartedHandler);
@@ -75,7 +58,7 @@ internal static class Program
     private static Schedule FiveMinutes() =>
         new(
             () => Logger.Information("FiveMinutes: five minutes has passed"),
-            run => run.OnceAt(DateTime.Now.AddMinutes(5)).AndEvery(5).Minutes()
+            run => run.Every(1).Seconds()
         );
 
     private static Schedule TenMinutes() =>

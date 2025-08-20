@@ -14,7 +14,7 @@ public class PeriodOnceTests
         var expected = new DateTime(2018, 3, 3, 8, 40, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new PeriodOnceSet(fluentCalculator);
 
         calculator.Now = () => now;
@@ -37,7 +37,7 @@ public class PeriodOnceTests
         var timeSpan = new TimeSpan(12, 30, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new PeriodOnceSet(fluentCalculator);
 
         calculator.Now = () => now;
@@ -58,7 +58,7 @@ public class PeriodOnceTests
         var expectedDate = new DateTime(2019, 03, 10, 11, 30, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         calculator.Now = () => now;
@@ -83,7 +83,7 @@ public class PeriodOnceTests
         var to = new TimeSpan(2, 30, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         calculator.Now = () => now;
@@ -107,7 +107,7 @@ public class PeriodOnceTests
         var to = new TimeSpan(19, 30, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         calculator.Now = () => now;
@@ -131,7 +131,7 @@ public class PeriodOnceTests
         var to = new TimeSpan(23, 30, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         calculator.Now = () => now;
@@ -155,7 +155,7 @@ public class PeriodOnceTests
         var to = new TimeSpan(22, 30, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RunSpecifier(fluentCalculator);
 
         calculator.Now = () => now;

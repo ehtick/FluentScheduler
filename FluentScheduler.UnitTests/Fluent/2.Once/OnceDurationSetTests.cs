@@ -15,7 +15,7 @@ public class OnceDurationSetTests
         var expected = new DateTime(2018, 2, 16, 0, 3, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new OnceDurationSet(3, fluentCalculator);
 
         // Act
@@ -34,7 +34,7 @@ public class OnceDurationSetTests
         var expected = new DateTime(2018, 2, 16, 3, 0, 0);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new OnceDurationSet(3, fluentCalculator);
 
         // Act
@@ -53,7 +53,7 @@ public class OnceDurationSetTests
         var expected = new DateTime(2018, 2, 19);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new OnceDurationSet(3, fluentCalculator);
 
         // Act
@@ -72,7 +72,7 @@ public class OnceDurationSetTests
         var expected = new DateTime(2018, 3, 9);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new OnceDurationSet(3, fluentCalculator);
 
         // Act
@@ -91,7 +91,7 @@ public class OnceDurationSetTests
         var expected = new DateTime(2018, 6, 16);
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new OnceDurationSet(3, fluentCalculator);
 
         // Act

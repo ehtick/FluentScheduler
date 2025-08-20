@@ -33,7 +33,7 @@ public class PeriodOnceSet
 
         foreach (var time in timeCollection)
         {
-            if (time >= ((INextRunCalculator)_calculator).Now().TimeOfDay)
+            if (time >= ((ITimeCalculator)_calculator).Now().TimeOfDay)
             {
                 _calculator.PeriodCalculations.Add(last =>
                     new DateTime(last.Year, last.Month, last.Day, time.Hours, time.Minutes, 0)
@@ -67,7 +67,7 @@ public class PeriodOnceSet
         _calculator.PeriodCalculations.Add(
             last =>
             {
-                var now = ((INextRunCalculator)_calculator).Now();
+                var now = ((ITimeCalculator)_calculator).Now();
                 var lastTime = last.TimeOfDay;
 
                 var next = new DateTime(last.Year, last.Month, last.Day).Add(from);

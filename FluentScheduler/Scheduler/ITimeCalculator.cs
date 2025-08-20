@@ -3,7 +3,7 @@ namespace FluentScheduler;
 using System;
 
 // computes the next job run of a schedule
-internal interface INextRunCalculator
+internal interface ITimeCalculator
 {
     // a mockable DateTime.Now
 	Func<DateTime> Now { get; set; }

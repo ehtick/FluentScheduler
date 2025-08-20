@@ -19,7 +19,7 @@ public class RestrictionUnitTests
         };
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RestrictionUnit(fluentCalculator); 
 
         // Act
@@ -39,7 +39,7 @@ public class RestrictionUnitTests
         var exceptionalDays = new DayOfWeek[2];
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RestrictionUnit(fluentCalculator); 
 
         // Act
@@ -67,7 +67,7 @@ public class RestrictionUnitTests
         };
 
         var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (INextRunCalculator)fluentCalculator;
+        var calculator = (ITimeCalculator)fluentCalculator;
         var run = new RestrictionUnit(fluentCalculator); 
 
         // Act / Assert
