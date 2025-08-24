@@ -4,8 +4,17 @@ using System.Diagnostics.CodeAnalysis;
 namespace FluentScheduler;
 
 // helper methods for performing simple validations and that should throw an exception
-internal class ThrowHelper
+internal static class ThrowHelper
 {
+    // throws if the given collection is empty
+    internal static void ThrowIfEmpty(TimeSpan[] values, string paramName)
+    {
+        ThrowIfNull(values, paramName);
+
+        if (values.Length == 0)
+            throw new ArgumentException($"\"{paramName}\" cannot be empty.");
+    }
+
     // equivalent of public static void ArgumentOutOfRangeException.ThrowIfGreaterThan(value, other) which is not
     // available for .NET 4.8
     internal static void ThrowIfGreaterThan(int value, int other, string paramName)

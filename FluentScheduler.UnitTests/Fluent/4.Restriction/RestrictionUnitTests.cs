@@ -11,16 +11,15 @@ public class RestrictionUnitTests
     {
         // Arrange
         var now = new DateTime(2019, 2, 25);
-        var expected = new DateTime(2019, 2, 27);  
+        var expected = new DateTime(2019, 2, 27);
         var exceptionalDays = new DayOfWeek[2]
         {
             DayOfWeek.Monday,
             DayOfWeek.Tuesday,
         };
 
-        var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (ITimeCalculator)fluentCalculator;
-        var run = new RestrictionUnit(fluentCalculator); 
+        var calculator = new FluentTimeCalculator();
+        var run = new RestrictionUnit(calculator);
 
         // Act
         run.Except(exceptionalDays);
@@ -35,12 +34,11 @@ public class RestrictionUnitTests
     {
         // Arrange
         var now = new DateTime(2019, 2, 25);
-        var expected = new DateTime(2019, 2, 25);  
+        var expected = new DateTime(2019, 2, 25);
         var exceptionalDays = new DayOfWeek[2];
 
-        var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (ITimeCalculator)fluentCalculator;
-        var run = new RestrictionUnit(fluentCalculator); 
+        var calculator = new FluentTimeCalculator();
+        var run = new RestrictionUnit(calculator);
 
         // Act
         run.Except(exceptionalDays);
@@ -66,9 +64,8 @@ public class RestrictionUnitTests
             DayOfWeek.Saturday,
         };
 
-        var fluentCalculator = new FluentTimeCalculator();
-        var calculator = (ITimeCalculator)fluentCalculator;
-        var run = new RestrictionUnit(fluentCalculator); 
+        var calculator = new FluentTimeCalculator();
+        var run = new RestrictionUnit(calculator);
 
         // Act / Assert
         Throws<ArgumentException>(() => run.Except(allDays));
