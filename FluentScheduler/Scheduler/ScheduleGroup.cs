@@ -22,7 +22,11 @@ public static class ScheduleGroup
         ArgumentNullException.ThrowIfNull(schedules);
         ArgumentNullException.ThrowIfNull(handler);
 
-        ForEach(schedules, false, i => i.JobStarted += handler);
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            false, // no need to parallelize the iterations
+            i => i.JobStarted += handler
+        );
     }
 
     /// <summary>
@@ -36,7 +40,11 @@ public static class ScheduleGroup
         ArgumentNullException.ThrowIfNull(schedules);
         ArgumentNullException.ThrowIfNull(handler);
 
-        ForEach(schedules, false, i => i.JobEnded += handler);
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            false, // no need to parallelize the iterations
+            i => i.JobEnded += handler
+        );
     }
 
     /// <summary>
@@ -50,7 +58,11 @@ public static class ScheduleGroup
         ArgumentNullException.ThrowIfNull(schedules);
         ArgumentNullException.ThrowIfNull(handler);
 
-        ForEach(schedules, false, i => i.JobStarted -= handler);
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            false, // no need to parallelize the iterations
+            i => i.JobStarted -= handler
+        );
     }
 
     /// <summary>
@@ -64,7 +76,11 @@ public static class ScheduleGroup
         ArgumentNullException.ThrowIfNull(schedules);
         ArgumentNullException.ThrowIfNull(handler);
 
-        ForEach(schedules, false, i => i.JobEnded -= handler);
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            false, // no need to parallelize the iterations
+            i => i.JobEnded -= handler
+        );
     }
 
 
@@ -76,7 +92,12 @@ public static class ScheduleGroup
     {
         ArgumentNullException.ThrowIfNull(schedules);
 
-        ForEach(schedules, false, i => i.ShouldNotBeRunning(), i => i.ResetScheduling());
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            false, // no need to parallelize the iterations
+            i => i.ShouldNotBeRunning(),
+            i => i.ResetScheduling()
+        );
     }
 
     /// <summary>
@@ -90,7 +111,10 @@ public static class ScheduleGroup
         ArgumentNullException.ThrowIfNull(specifier);
 
         ForEach(
-            schedules, false, i => i.ShouldNotBeRunning(), i => i.SetScheduling(new FluentTimeCalculator(specifier))
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            false, // no need to parallelize the iterations
+            i => i.ShouldNotBeRunning(),
+            i => i.SetScheduling(new FluentTimeCalculator(specifier))
         );
     }
 
@@ -102,7 +126,11 @@ public static class ScheduleGroup
     {
         ArgumentNullException.ThrowIfNull(schedules);
 
-        ForEach(schedules, false, i => i.Start());
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            false, // no need to parallelize the iterations
+            i => i.Start()
+        );
     }
 
     /// <summary>
@@ -113,7 +141,11 @@ public static class ScheduleGroup
     {
         ArgumentNullException.ThrowIfNull(schedules);
 
-        ForEach(schedules, false, i => i.Stop(false));
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            false, // no need to parallelize the iterations
+            i => i.Stop(false)
+        );
     }
 
     /// <summary>
@@ -124,7 +156,11 @@ public static class ScheduleGroup
     {
         ArgumentNullException.ThrowIfNull(schedules);
 
-        ForEach(schedules, true, i => i.Stop(true));
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            true, // running the iterations in parallel
+            i => i.Stop(true)
+        );
     }
 
     /// <summary>
@@ -137,7 +173,11 @@ public static class ScheduleGroup
         ArgumentNullException.ThrowIfNull(schedules);
         ArgumentOutOfRangeException.ThrowIfNegative(timeout);
 
-        ForEach(schedules, true, i => i.Stop(true, timeout));
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            true, // running the iterations in parallel
+            i => i.Stop(true, timeout)
+        );
     }
 
     /// <summary>
@@ -150,7 +190,11 @@ public static class ScheduleGroup
         ArgumentNullException.ThrowIfNull(schedules);
         ThrowHelper.ThrowIfNegative(timeout);
 
-        ForEach(schedules, true, i => i.Stop(true, timeout.Milliseconds));
+        ForEach(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            true, // running the iterations in parallel
+            i => i.Stop(true, timeout.Milliseconds)
+        );
     }
 
     /// <summary>
@@ -162,7 +206,10 @@ public static class ScheduleGroup
     {
         ArgumentNullException.ThrowIfNull(schedules);
 
-        return Select(schedules, i => i.Running()).All(r => r);
+        return Select(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            i => i.Running()
+        ).All(r => r);
     }
 
     /// <summary>
@@ -174,7 +221,10 @@ public static class ScheduleGroup
     {
         ArgumentNullException.ThrowIfNull(schedules);
 
-        return Select(schedules, i => i.Running()).All(r => !r);
+        return Select(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            i => i.Running()
+        ).All(r => !r);
     }
 
     /// <summary>
@@ -186,7 +236,10 @@ public static class ScheduleGroup
     {
         ArgumentNullException.ThrowIfNull(schedules);
 
-        return Select(schedules, i => i.Running()).Any(r => r);
+        return Select(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            i => i.Running()
+        ).Any(r => r);
     }
 
     /// <summary>
@@ -198,7 +251,10 @@ public static class ScheduleGroup
     {
         ArgumentNullException.ThrowIfNull(schedules);
 
-        return Select(schedules, i => i.Running()).Any(r => !r);
+        return Select(
+            [.. schedules], // forcing evaluation of a potential deferred execution
+            i => i.Running()
+        ).Any(r => !r);
     }
 
     /// <summary>
@@ -239,7 +295,7 @@ public static class ScheduleGroup
     // acquire all running locks, runs the given action on the given schedules (in parallel or not), then release the
     // acquired locks
     private static void ForEach(
-        IEnumerable<Schedule> schedules, bool parallel, params Action<InternalSchedule>[] toRun)
+        Schedule[] schedules, bool parallel, params Action<InternalSchedule>[] toRun)
     {
         var internals = Internal(schedules);
 
@@ -267,7 +323,7 @@ public static class ScheduleGroup
     }
 
     // acquires all running locks, runs LINQ's Select() on the given schedules, then release the acquired locks
-    private static IEnumerable<T> Select<T>(IEnumerable<Schedule> schedules, Func<InternalSchedule, T> selector)
+    private static T[] Select<T>(Schedule[] schedules, Func<InternalSchedule, T> selector)
     {
         var internals = Internal(schedules);
 
@@ -284,18 +340,18 @@ public static class ScheduleGroup
     }
 
     // a shorthand for getting the internal schedules behind the given schedules, purely for readability
-    private static InternalSchedule[] Internal(IEnumerable<Schedule> schedules) =>
+    private static InternalSchedule[] Internal(Schedule[] schedules) =>
         [.. schedules.Select(s => s.Internal)];
 
     // synchronously acquires all running locks of all schedules
-    private static void EnterLock(IEnumerable<InternalSchedule> internals)
+    private static void EnterLock(InternalSchedule[] internals)
     {
         foreach (var i in internals)
             Monitor.Enter(i.RunningLock);
     }
 
     // synchronously releases all the running locks of all schedules
-    private static void ExitLock(IEnumerable<InternalSchedule> internals)
+    private static void ExitLock(InternalSchedule[] internals)
     {
         foreach (var i in internals)
             Monitor.Exit(i.RunningLock);
