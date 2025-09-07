@@ -110,6 +110,11 @@ public class Schedule
     }
 
     /// <summary>
+    /// Date and time of the last job run.
+    /// </summary>
+    public DateTime? LastRun => Internal.LastRun;
+
+    /// <summary>
     /// Date and time of the next job run.
     /// </summary>
     public DateTime? NextRun => Internal.NextRun;

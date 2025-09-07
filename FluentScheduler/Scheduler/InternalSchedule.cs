@@ -29,6 +29,9 @@ internal class InternalSchedule
         SetScheduling(calculator);
     }
 
+    // the computed NextRun immediately before the current NextRun
+    internal DateTime? LastRun { get; private set; }
+
     // the computed next run date and time, it can be null due the library supporting scheduling for running only once
     internal DateTime? NextRun { get; private set; }
 
@@ -79,7 +82,7 @@ internal class InternalSchedule
         if (Running())
             return;
 
-        CalculateNextRun(_calculator.Now());
+        CalculateNextRun();
 
         _tokenSource = new CancellationTokenSource();
         _task = Run(_tokenSource.Token);
@@ -115,7 +118,11 @@ internal class InternalSchedule
     internal void UseUtc() => _calculator.Now = () => DateTime.UtcNow;
 
     // computes and sets the next run
-    private void CalculateNextRun(DateTime last) => NextRun = _calculator.Calculate(last);
+    private void CalculateNextRun()
+    {
+        LastRun = NextRun;
+        NextRun = _calculator.Calculate(LastRun ?? _calculator.Now());
+    }
 
     // the main method of scheduling, runs user's job, raise events, computes next run, and sleeps
     [SuppressMessage("Design", "CA1031", Justification = "It's OK to catch a general exception here because it comes " +
@@ -143,12 +150,12 @@ internal class InternalSchedule
         if (token.IsCancellationRequested)
             return;
 
-        // used on both JobStarted and JobEnded events
-        var startTime = _calculator.Now();
-
         // calculating the next run
         // used on both JobEnded event and for the next run of this method
-        CalculateNextRun(startTime);
+        CalculateNextRun();
+
+        // used on both JobStarted and JobEnded events
+        var startTime = _calculator.Now();
 
         // raising JobStarted event
         JobStarted?.Invoke(this, new JobStartedEventArgs(startTime));
